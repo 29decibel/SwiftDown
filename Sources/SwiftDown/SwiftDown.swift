@@ -152,6 +152,9 @@
       textView.backgroundColor = theme.backgroundColor
       textView.insertionPointColor = theme.cursorColor
       textView.textColor = theme.tintColor
+      let style = NSMutableParagraphStyle()
+      style.lineSpacing = 20.0
+      textView.defaultParagraphStyle = style
       return textView
     }()
 
