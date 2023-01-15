@@ -22,13 +22,20 @@ public class MarkdownEngine {
       let e = lines[Int(p.end_line) - 1] + Int(p.end_column) - 1
 
       let fromIdx = text.utf8.index(text.utf8.startIndex, offsetBy: s)
+        
+      print(text)
       let range =
         text.utf8
         .index(text.utf8.startIndex, offsetBy: e, limitedBy: text.utf8.endIndex)
         .flatMap {
           if ($0 < text.utf8.endIndex ) {
-            let range = NSRange(fromIdx...$0, in: text)
-            return NSRange(location: range.location + offset, length: range.length)
+            print("Lower bound: \(fromIdx) Upper \($0)")
+              if fromIdx <= $0 {
+                  let range = NSRange(fromIdx...$0, in: text)
+                  return NSRange(location: range.location + offset, length: range.length)
+              }
+              return nil
+            
           } else {
             return nil
           }
